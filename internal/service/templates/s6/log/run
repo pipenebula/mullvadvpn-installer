@@ -1,0 +1,2 @@
+#!/usr/bin/execlineb -P
+s6-log --directory /var/log/mullvad-daemon --timestamps --rotate=7

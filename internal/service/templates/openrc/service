@@ -1,0 +1,17 @@
+#!/sbin/openrc-run
+
+name="mullvad-daemon"
+description="Mullvad VPN daemon"
+command="/usr/bin/mullvad-daemon"
+command_args="-v --disable-stdout-timestamps"
+pidfile="/var/run/${name}.pid"
+
+depend() {
+  need net
+}
+
+start_pre() {
+  ebegin "Waiting for network"
+  wait_for_network
+  eend $?
+}

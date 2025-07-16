@@ -1,0 +1,11 @@
+# dinit unit for mullvad-daemon
+[Unit]
+Description = Mullvad VPN daemon
+After = net
+StopSignal = TERM
+PIDFile = /run/mullvad-daemon.pid
+
+[Service]
+ExecStart = /usr/bin/mullvad-daemon -v --disable-stdout-timestamps
+Restart = on-failure
+RestartSec = 5

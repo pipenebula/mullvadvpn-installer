@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+DAEMON=/usr/bin/mullvad-daemon
+OPTS="-v --disable-stdout-timestamps"
+TAG=mullvad-daemon
+i=0
+until ip route | grep -q '^default' || [ "$i" -ge 30 ]; do
+i=$((i+1)); sleep 2
+done
+if ! ip route | grep -q '^default'; then
+logger -t "$TAG" "Network did not come up"
+exit 1
+fi
+exec "$DAEMON" $OPTS

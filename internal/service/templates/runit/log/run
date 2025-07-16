@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# timestamp + message
+exec svlogd -tt /var/log/mullvad-daemon
